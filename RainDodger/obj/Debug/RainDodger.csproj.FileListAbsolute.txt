@@ -1,0 +1,5 @@
+D:\C# Projects\CPD\Game\RainDodger\RainDodger\bin\Debug\RainDodger.exe.config
+D:\C# Projects\CPD\Game\RainDodger\RainDodger\obj\Debug\RainDodger.csprojResolveAssemblyReference.cache
+D:\C# Projects\CPD\Game\RainDodger\RainDodger\obj\Debug\RainDodger.GameScreen.resources
+D:\C# Projects\CPD\Game\RainDodger\RainDodger\obj\Debug\RainDodger.Properties.Resources.resources
+D:\C# Projects\CPD\Game\RainDodger\RainDodger\obj\Debug\RainDodger.csproj.GenerateResource.Cache
