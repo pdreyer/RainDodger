@@ -27,8 +27,6 @@ namespace RainDodger
             // Speed / Level
             // Lives
 
-            //Test - delete line
-
             //Start Game
             //Settings
         }
