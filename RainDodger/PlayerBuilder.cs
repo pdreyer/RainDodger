@@ -9,21 +9,28 @@ namespace RainDodger
 {
     public class PlayerBuilder
     {
-        public Graphics GetPlayer(int x, int y)
+        public Graphics GetPlayer(Graphics graphics, int x, int y)
         {
-            Graphics dc = new Graphics();
+            Pen RedPen = new Pen(Color.Black, 2);
+            //graphics.DrawEllipse(RedPen, x, 310, 50, 50); //Head
+            //graphics.DrawEllipse(RedPen, x + 15, 320, 5, 5); //Left Eye
+            //graphics.DrawEllipse(RedPen, x + 30, 320, 5, 5); //Right Eye
+            //graphics.DrawEllipse(RedPen, x + 16, 340, 20, 6); //Mouth
+            //graphics.DrawLine(RedPen, x + 25, 360, x + 25, 400); //Body
+            //graphics.DrawLine(RedPen, x + 10, 380, x + 40, 380); //Arms
+            //graphics.DrawLine(RedPen, x + 25, 400, x + 10, 420); //Left Leg
+            //graphics.DrawLine(RedPen, x + 25, 400, x + 40, 420); //Right Leg
 
-            Pen RedPen = new Pen(Color.Red, 2);
-            dc.DrawEllipse(RedPen, x + y, 310, 50, 50); //Head
-            dc.DrawEllipse(RedPen, x + 15 + y, 320, 5, 5); //Left Eye
-            dc.DrawEllipse(RedPen, x + 30 + y, 320, 5, 5); //Right Eye
-            dc.DrawEllipse(RedPen, x + 16 + y, 340, 20, 6); //Mouth
-            dc.DrawLine(RedPen, x + 25 + y, 360, x + 25 + y, 400); //Body
-            dc.DrawLine(RedPen, x + 10 + y, 380, x + 40 + y, 380); //Arms
-            dc.DrawLine(RedPen, x + 25 + y, 400, x + 10 + y, 420); //Left Leg
-            dc.DrawLine(RedPen, x + 25 + y, 400, x + 40 + y, 420); //Right Leg
+            graphics.DrawEllipse(RedPen, x, y, 50, 50); //Head
+            graphics.DrawEllipse(RedPen, x + 15, y + 10, 5, 5); //Left Eye
+            graphics.DrawEllipse(RedPen, x + 30, y + 10, 5, 5); //Right Eye
+            graphics.DrawEllipse(RedPen, x + 16, y + 30, 20, 6); //Mouth
+            graphics.DrawLine(RedPen, x + 25, y + 50, x + 25, y + 90); //Body
+            graphics.DrawLine(RedPen, x + 10, y + 70, x + 40, y + 70); //Arms
+            graphics.DrawLine(RedPen, x + 25, y + 90, x + 10, y + 110); //Left Leg
+            graphics.DrawLine(RedPen, x + 25, y + 90, x + 40, y + 110); //Right Leg
 
-            return dc;
+            return graphics;
         }
     }
 }

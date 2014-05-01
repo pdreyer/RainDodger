@@ -3,3 +3,11 @@ D:\C# Projects\CPD\Game\RainDodger\RainDodger\obj\Debug\RainDodger.csprojResolve
 D:\C# Projects\CPD\Game\RainDodger\RainDodger\obj\Debug\RainDodger.GameScreen.resources
 D:\C# Projects\CPD\Game\RainDodger\RainDodger\obj\Debug\RainDodger.Properties.Resources.resources
 D:\C# Projects\CPD\Game\RainDodger\RainDodger\obj\Debug\RainDodger.csproj.GenerateResource.Cache
+D:\C# Projects\CPD\Game\RainDodger\RainDodger\bin\Debug\RainDodger.exe
+D:\C# Projects\CPD\Game\RainDodger\RainDodger\bin\Debug\RainDodger.pdb
+D:\C# Projects\CPD\Game\RainDodger\RainDodger\obj\Debug\RainDodger.exe
+D:\C# Projects\CPD\Game\RainDodger\RainDodger\obj\Debug\RainDodger.pdb
+D:\C# Projects\CPD\Game\RainDodger\RainDodger\bin\Debug\AntiXssLibrary.dll
+D:\C# Projects\CPD\Game\RainDodger\RainDodger\bin\Debug\HtmlSanitizationLibrary.dll
+D:\C# Projects\CPD\Game\RainDodger\RainDodger\bin\Debug\AntiXssLibrary.xml
+D:\C# Projects\CPD\Game\RainDodger\RainDodger\bin\Debug\HtmlSanitizationLibrary.xml
