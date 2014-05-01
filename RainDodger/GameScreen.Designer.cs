@@ -34,6 +34,7 @@
             // 
             // GameTimer
             // 
+            this.GameTimer.Enabled = true;
             this.GameTimer.Tick += new System.EventHandler(this.GameTimer_Tick);
             // 
             // GameScreen

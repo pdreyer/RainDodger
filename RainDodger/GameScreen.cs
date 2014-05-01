@@ -15,40 +15,53 @@ namespace RainDodger
     {
         public int POSx = -1;
         public int POSy = -1;
+        private bool runOncePlayer = true;
+        private bool runOnceRaindrops = true;
+        int raindropCount = int.Parse(ConfigurationSettings.AppSettings["RaindropCount"].ToString());
+        int rainddropSpeed = int.Parse(ConfigurationSettings.AppSettings["RaindropSpeed"].ToString());
+        int playerLives = int.Parse(ConfigurationSettings.AppSettings["PlayerLives"].ToString());
+        private int[,] raindrops;
 
         public GameScreen()
         {
             InitializeComponent();
 
             GameManager();
+            RaindropManager();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //Configs:
-            // Raindrop count
-            // Speed / Level
-            // Lives
-
-            //Start Game
-            //Settings
+            
         }
 
         private void GameManager()
         {
-            //Calculate game over / lives
-            //Score calc
+            PlayerLives();
+            PlayerScoreCalc();
 
             Graphics background = this.CreateGraphics();
             background.Clear(Color.White);
             this.Show();
             PlayerManager();
+            RaindropManager();
+        }
 
+        private void PlayerLives()
+        {
+        }
+
+        private void PlayerScoreCalc()
+        {
         }
 
         private void PlayerManager()
         {
-            CalcPlayerStartPOS();
+            if (runOncePlayer)
+            {
+                runOncePlayer = false;
+                CalcPlayerStartPOS();
+            }
 
             Graphics dc = this.CreateGraphics();
             PlayerBuilder playerBuilder = new PlayerBuilder();
@@ -57,19 +70,35 @@ namespace RainDodger
 
         private void RaindropManager()
         {
-            //Build raindrops / update raindrops
-            //Raindrop Manager (Check raindrops in screen, Count in screen, 
+            Graphics raindrop = this.CreateGraphics();
+
+            if (runOnceRaindrops)
+            {
+                runOnceRaindrops = false;
+                RaindropBuilder raindropBuilder = new RaindropBuilder();
+                raindrops = raindropBuilder.RaindropManager(this.Width, raindrop);
+            }
+
+            Pen BluePen = new Pen(Color.Blue, 3);
+            this.Show();
+
+            for (int i = 0; i < raindropCount; i++)
+            {
+                raindrop.DrawEllipse(BluePen, raindrops[i, 0], raindrops[i, 1], 2, 5);
+            }
         }
 
-        private void CalcPlayerStartPOS()
+        public void CalcPlayerStartPOS()
         {
             int playerHeight = int.Parse(ConfigurationSettings.AppSettings["PlayerHeight"].ToString());
+            int playerWidth = int.Parse(ConfigurationSettings.AppSettings["PlayerWidth"].ToString());
 
             List<int> screenSize = CalcScreenSize();
             int screenWidth = screenSize[0];
             int screenHeight = screenSize[1];
 
-            POSx = screenWidth / 2;
+            List<int> playerPOS = new List<int>();
+            POSx = (screenWidth / 2) - playerWidth;
             POSy = screenHeight - playerHeight;
         }
 
@@ -82,30 +111,34 @@ namespace RainDodger
             return screenSize;
         }
 
-        private int[,] GenerateRaindropPOS()
-        {
-            //Random number gen x2
-
-            return new int[1,1];
-        }
-
         private void GameTimer_Tick(object sender, EventArgs e)
         {
-            //Timer - Render screen
+            RaindropBuilder raindropBuilder = new RaindropBuilder();
+            raindropBuilder.UpdateRaindrops(raindrops);
+            RenderScreen();
+        }
+
+        private void RenderScreen()
+        {
+            Graphics background = this.CreateGraphics();
+            background.Clear(Color.White);
+            this.Show();
+
+            PlayerManager();
+            RaindropManager();
+
         }
 
         private void GameScreen_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyValue.ToString() == "39" || e.KeyValue.ToString() == "102")
             {
-                //currentPos = currentPos + 1;
-                POSx = POSx + 1;
+                POSx = POSx + 3;
             }
 
             if (e.KeyValue.ToString() == "37" || e.KeyValue.ToString() == "100")
             {
-                //currentPos = currentPos - 1;
-                POSx = POSx - 1;
+                POSx = POSx - 3;
             }
         }
     }

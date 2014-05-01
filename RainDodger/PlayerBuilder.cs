@@ -12,14 +12,6 @@ namespace RainDodger
         public Graphics GetPlayer(Graphics graphics, int x, int y)
         {
             Pen RedPen = new Pen(Color.Black, 2);
-            //graphics.DrawEllipse(RedPen, x, 310, 50, 50); //Head
-            //graphics.DrawEllipse(RedPen, x + 15, 320, 5, 5); //Left Eye
-            //graphics.DrawEllipse(RedPen, x + 30, 320, 5, 5); //Right Eye
-            //graphics.DrawEllipse(RedPen, x + 16, 340, 20, 6); //Mouth
-            //graphics.DrawLine(RedPen, x + 25, 360, x + 25, 400); //Body
-            //graphics.DrawLine(RedPen, x + 10, 380, x + 40, 380); //Arms
-            //graphics.DrawLine(RedPen, x + 25, 400, x + 10, 420); //Left Leg
-            //graphics.DrawLine(RedPen, x + 25, 400, x + 40, 420); //Right Leg
 
             graphics.DrawEllipse(RedPen, x, y, 50, 50); //Head
             graphics.DrawEllipse(RedPen, x + 15, y + 10, 5, 5); //Left Eye
