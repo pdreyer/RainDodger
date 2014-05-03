@@ -114,7 +114,7 @@ namespace RainDodger
         private void GameTimer_Tick(object sender, EventArgs e)
         {
             RaindropBuilder raindropBuilder = new RaindropBuilder();
-            raindropBuilder.UpdateRaindrops(raindrops);
+            raindropBuilder.UpdateRaindrops(raindropCount, raindrops, this.Height, this.Width);
             RenderScreen();
         }
 
@@ -127,6 +127,27 @@ namespace RainDodger
             PlayerManager();
             RaindropManager();
 
+            CheckAliveStatus();
+        }
+
+        private void CheckAliveStatus()
+        {
+            //Graphics background = this.CreateGraphics();
+            //background.CopyFromScreen(0, 0, this.Width, this.Height, new System.Drawing.Size(this.Width, this.Height));
+
+            //Bitmap newBitmap = new Bitmap(this.Width, this.Height);
+            
+            //this.DrawToBitmap(newBitmap, new Rectangle(0, 0, this.Width, this.Height));
+
+
+            //newBitmap.Save("d:\\test.bmp");
+
+            //Color pixelColor = newBitmap.GetPixel(2, 2);
+
+            //bool dead = false;
+
+            //if (pixelColor.ToArgb() == Color.Black.ToArgb())
+            //    dead = true;
         }
 
         private void GameScreen_KeyDown(object sender, KeyEventArgs e)

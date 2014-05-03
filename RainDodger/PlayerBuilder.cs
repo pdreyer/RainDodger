@@ -11,16 +11,20 @@ namespace RainDodger
     {
         public Graphics GetPlayer(Graphics graphics, int x, int y)
         {
-            Pen RedPen = new Pen(Color.Black, 2);
+            Pen penColor = new Pen(Color.Black, 2);
 
-            graphics.DrawEllipse(RedPen, x, y, 50, 50); //Head
-            graphics.DrawEllipse(RedPen, x + 15, y + 10, 5, 5); //Left Eye
-            graphics.DrawEllipse(RedPen, x + 30, y + 10, 5, 5); //Right Eye
-            graphics.DrawEllipse(RedPen, x + 16, y + 30, 20, 6); //Mouth
-            graphics.DrawLine(RedPen, x + 25, y + 50, x + 25, y + 90); //Body
-            graphics.DrawLine(RedPen, x + 10, y + 70, x + 40, y + 70); //Arms
-            graphics.DrawLine(RedPen, x + 25, y + 90, x + 10, y + 110); //Left Leg
-            graphics.DrawLine(RedPen, x + 25, y + 90, x + 40, y + 110); //Right Leg
+
+            //SolidBrush b = new SolidBrush(Color.Black);
+            //graphics.FillRectangle(b, 0, 0, 100, 100);
+
+            graphics.DrawEllipse(penColor, x, y, 50, 50); //Head
+            graphics.DrawEllipse(penColor, x + 15, y + 10, 5, 5); //Left Eye
+            graphics.DrawEllipse(penColor, x + 30, y + 10, 5, 5); //Right Eye
+            graphics.DrawEllipse(penColor, x + 16, y + 30, 20, 6); //Mouth
+            graphics.DrawLine(penColor, x + 25, y + 50, x + 25, y + 90); //Body
+            graphics.DrawLine(penColor, x + 10, y + 70, x + 40, y + 70); //Arms
+            graphics.DrawLine(penColor, x + 25, y + 90, x + 10, y + 110); //Left Leg
+            graphics.DrawLine(penColor, x + 25, y + 90, x + 40, y + 110); //Right Leg
 
             return graphics;
         }

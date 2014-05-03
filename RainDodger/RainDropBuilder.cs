@@ -10,11 +10,11 @@ namespace RainDodger
 {
     public class RaindropBuilder
     {
-        private int raindropCount = int.Parse(ConfigurationSettings.AppSettings["RaindropCount"].ToString());
         private int[,] RaindropArr;
 
         public int[,] RaindropManager(int screenWidth, Graphics graphRaindrop)
         {
+            int raindropCount = int.Parse(ConfigurationSettings.AppSettings["RaindropCount"].ToString());
             RaindropArr = new int[raindropCount, 2];
             List<Graphics> graphRaindrops = new List<Graphics>();
 
@@ -34,7 +34,7 @@ namespace RainDodger
         {
             int[] RandomArr = new int[length];
 
-            for (int i = 0; i < raindropCount; i++)
+            for (int i = 0; i < length; i++)
             {
                 Random rnd = new Random();
                 int seconds = rnd.Next(3, 50);
@@ -51,11 +51,22 @@ namespace RainDodger
             return RandomArr;
         }
 
-        public int[,] UpdateRaindrops(int[,] graphRaindrops)
+        public int[,] UpdateRaindrops(int raindropCount, int[,] graphRaindrops, int screenHeight, int screenWidth)
         {
             for (int i = 0; i < raindropCount; i++)
             {
-                graphRaindrops[i, 1] = int.Parse(graphRaindrops[i, 1].ToString()) + 5;
+                int newPOS = int.Parse(graphRaindrops[i, 1].ToString()) + 5;
+
+                if (newPOS > screenHeight)
+                {
+                    int[] RaindropXpos = GenerateRaindropPOS(1, 10, screenWidth);
+                    newPOS = RaindropXpos[0];
+
+                    //graphRaindrops[i, 0] = newPOS;
+                    graphRaindrops[i, 1] = 0;
+                }
+
+                graphRaindrops[i, 1] = newPOS;
             }
 
             return graphRaindrops;
