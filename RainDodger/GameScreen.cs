@@ -20,6 +20,10 @@ namespace RainDodger
         int raindropCount = int.Parse(ConfigurationSettings.AppSettings["RaindropCount"].ToString());
         int rainddropSpeed = int.Parse(ConfigurationSettings.AppSettings["RaindropSpeed"].ToString());
         int playerLives = int.Parse(ConfigurationSettings.AppSettings["PlayerLives"].ToString());
+
+        int PlayerHeight = int.Parse(ConfigurationSettings.AppSettings["PlayerHeight"].ToString());
+        int PlayerWidth = int.Parse(ConfigurationSettings.AppSettings["PlayerWidth"].ToString());
+
         private int[,] raindrops;
 
         public GameScreen()
@@ -127,27 +131,25 @@ namespace RainDodger
             PlayerManager();
             RaindropManager();
 
+            Pen playerArea = new Pen(Color.White, 2);
+            background.DrawRectangle(playerArea, POSx - 2, POSy - 2, PlayerWidth + 5, PlayerHeight + 2); 
+
             CheckAliveStatus();
         }
 
         private void CheckAliveStatus()
         {
-            //Graphics background = this.CreateGraphics();
-            //background.CopyFromScreen(0, 0, this.Width, this.Height, new System.Drawing.Size(this.Width, this.Height));
+            bool Dead = false;
 
-            //Bitmap newBitmap = new Bitmap(this.Width, this.Height);
-            
-            //this.DrawToBitmap(newBitmap, new Rectangle(0, 0, this.Width, this.Height));
+            for (int i = 0; i < raindropCount; i++)
+            {
+                int currRaindropXPos = raindrops[i, 0];
+                int currRaindropYPos = raindrops[i, 1];
 
-
-            //newBitmap.Save("d:\\test.bmp");
-
-            //Color pixelColor = newBitmap.GetPixel(2, 2);
-
-            //bool dead = false;
-
-            //if (pixelColor.ToArgb() == Color.Black.ToArgb())
-            //    dead = true;
+                if(currRaindropXPos >= POSx && currRaindropXPos <= (POSx + PlayerWidth))
+                    if (currRaindropYPos >= POSy && currRaindropYPos <= (POSy + PlayerHeight))
+                        Dead = true;
+            }
         }
 
         private void GameScreen_KeyDown(object sender, KeyEventArgs e)

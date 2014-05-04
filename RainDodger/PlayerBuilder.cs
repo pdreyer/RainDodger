@@ -13,7 +13,6 @@ namespace RainDodger
         {
             Pen penColor = new Pen(Color.Black, 2);
 
-
             //SolidBrush b = new SolidBrush(Color.Black);
             //graphics.FillRectangle(b, 0, 0, 100, 100);
 

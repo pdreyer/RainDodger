@@ -61,8 +61,6 @@ namespace RainDodger
                 {
                     int[] RaindropXpos = GenerateRaindropPOS(1, 10, screenWidth);
                     newPOS = RaindropXpos[0];
-
-                    //graphRaindrops[i, 0] = newPOS;
                     graphRaindrops[i, 1] = 0;
                 }
 
