@@ -13,16 +13,17 @@ namespace RainDodger
 {
     public partial class GameScreen : Form
     {
-        public int POSx = -1;
-        public int POSy = -1;
+        private int LivesUsed = 0;
+        private int POSx = -1;
+        private int POSy = -1;
         private bool runOncePlayer = true;
         private bool runOnceRaindrops = true;
-        int raindropCount = int.Parse(ConfigurationSettings.AppSettings["RaindropCount"].ToString());
-        int rainddropSpeed = int.Parse(ConfigurationSettings.AppSettings["RaindropSpeed"].ToString());
-        int playerLives = int.Parse(ConfigurationSettings.AppSettings["PlayerLives"].ToString());
+        private int raindropCount = int.Parse(ConfigurationSettings.AppSettings["RaindropCount"].ToString());
+        private int rainddropSpeed = int.Parse(ConfigurationSettings.AppSettings["RaindropSpeed"].ToString());
 
-        int PlayerHeight = int.Parse(ConfigurationSettings.AppSettings["PlayerHeight"].ToString());
-        int PlayerWidth = int.Parse(ConfigurationSettings.AppSettings["PlayerWidth"].ToString());
+        private int playerLives = int.Parse(ConfigurationSettings.AppSettings["PlayerLives"].ToString());
+        private int PlayerHeight = int.Parse(ConfigurationSettings.AppSettings["PlayerHeight"].ToString());
+        private int PlayerWidth = int.Parse(ConfigurationSettings.AppSettings["PlayerWidth"].ToString());
 
         private int[,] raindrops;
 
@@ -36,7 +37,16 @@ namespace RainDodger
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+            Graphics background = this.CreateGraphics();
+            background.Clear(Color.White);
+
+            GameManager();
+            this.Show();
+
+            lblLives.Text = "Welcome to the Rain Dodger game.";
+            btnEndGame.Visible = true;
+            btnRestart.Visible = true;
+            lblLives.Visible = true;
         }
 
         private void GameManager()
@@ -69,7 +79,7 @@ namespace RainDodger
 
             Graphics dc = this.CreateGraphics();
             PlayerBuilder playerBuilder = new PlayerBuilder();
-            dc = playerBuilder.GetPlayer(dc, POSx, POSy);
+            dc = playerBuilder.BuildPlayer(dc, POSx, POSy);
         }
 
         private void RaindropManager()
@@ -146,10 +156,36 @@ namespace RainDodger
                 int currRaindropXPos = raindrops[i, 0];
                 int currRaindropYPos = raindrops[i, 1];
 
-                if(currRaindropXPos >= POSx && currRaindropXPos <= (POSx + PlayerWidth))
+                if (currRaindropXPos >= POSx && currRaindropXPos <= (POSx + PlayerWidth))
                     if (currRaindropYPos >= POSy && currRaindropYPos <= (POSy + PlayerHeight))
-                        Dead = true;
+                    {
+                        GameOver();
+                        break;
+                    }
             }
+        }
+
+        private void GameOver()
+        {
+            GameTimer.Enabled = false;
+            LivesUsed++;
+            int remainingLives = playerLives - LivesUsed;
+
+            Graphics deadPlayer = this.CreateGraphics();
+            deadPlayer.Clear(Color.White);
+            this.Show();
+
+            PlayerBuilder playerBuilder = new PlayerBuilder();
+            playerBuilder.KillPlayer(deadPlayer, POSx, POSy);
+
+            btnEndGame.Visible = true;
+            btnRestart.Visible = true;
+            lblLives.Visible = true;
+            btnRestart.Text = "Retry";
+            lblLives.Text = String.Format("GAME OVER !!!! {0} / {1} lives remaining.", remainingLives.ToString(), playerLives.ToString());
+
+            if (remainingLives == 0)
+                btnRestart.Enabled = false;
         }
 
         private void GameScreen_KeyDown(object sender, KeyEventArgs e)
@@ -163,6 +199,35 @@ namespace RainDodger
             {
                 POSx = POSx - 3;
             }
+        }
+
+        private void btnRestart_Click(object sender, EventArgs e)
+        {
+            btnEndGame.Visible = false;
+            btnRestart.Visible = false;
+            lblLives.Visible = false;
+
+            if (btnRestart.Text == "New Game")
+            {
+                GameManager();
+                RaindropManager();
+                GameTimer.Enabled = true;
+            }
+            else
+            {
+                raindrops = new int[raindropCount, 2];
+                runOnceRaindrops = true;
+                GameManager();
+                RaindropManager();
+                GameTimer.Enabled = true;
+            }
+
+            this.Focus();
+        }
+
+        private void btnEndGame_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
