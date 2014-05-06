@@ -10,3 +10,4 @@ D:\C# Projects\CPD\Game\RainDodger\RainDodger\bin\Debug\AntiXssLibrary.dll
 D:\C# Projects\CPD\Game\RainDodger\RainDodger\bin\Debug\HtmlSanitizationLibrary.dll
 D:\C# Projects\CPD\Game\RainDodger\RainDodger\bin\Debug\AntiXssLibrary.xml
 D:\C# Projects\CPD\Game\RainDodger\RainDodger\bin\Debug\HtmlSanitizationLibrary.xml
+D:\C# Projects\CPD\Game\RainDodger\RainDodger\obj\Debug\RainDodger.csprojResolveAssemblyReference.cache

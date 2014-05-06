@@ -42,6 +42,7 @@
             // 
             // lblLives
             // 
+            this.lblLives.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblLives.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLives.Location = new System.Drawing.Point(2, 230);
             this.lblLives.Name = "lblLives";
@@ -53,9 +54,7 @@
             // 
             // btnRestart
             // 
-            this.btnRestart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRestart.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnRestart.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRestart.Location = new System.Drawing.Point(416, 272);
             this.btnRestart.Name = "btnRestart";
@@ -68,9 +67,7 @@
             // 
             // btnEndGame
             // 
-            this.btnEndGame.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEndGame.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnEndGame.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEndGame.Location = new System.Drawing.Point(531, 272);
             this.btnEndGame.Name = "btnEndGame";
@@ -92,7 +89,7 @@
             this.Name = "GameScreen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Rain Dodger";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.GameScreen_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GameScreen_KeyDown);
             this.ResumeLayout(false);
 

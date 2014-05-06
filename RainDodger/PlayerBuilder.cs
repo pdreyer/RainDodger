@@ -10,6 +10,7 @@ namespace RainDodger
 {
     public class PlayerBuilder
     {
+        /*BuildPlayer method - Builds the player for the game*/
         public Graphics BuildPlayer(Graphics graphics, int x, int y)
         {
             Pen penColor = new Pen(Color.Black, 2);
@@ -26,6 +27,7 @@ namespace RainDodger
             return graphics;
         }
 
+        /*KillPlayer method - Builds the dead player for the game*/
         public Graphics KillPlayer(Graphics graphics, int x, int y)
         {
             Pen penColor = new Pen(Color.Black, 2);

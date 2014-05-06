@@ -10,8 +10,9 @@ namespace RainDodger
 {
     public class RaindropBuilder
     {
-        private int[,] RaindropArr;
+        private int[,] RaindropArr;                                                                                 // Two dimensional array that will hold the raindrops being created
 
+        /*RaindropManager method - used to */
         public int[,] RaindropManager(int screenWidth, Graphics graphRaindrop)
         {
             int raindropCount = int.Parse(ConfigurationSettings.AppSettings["RaindropCount"].ToString());
@@ -59,9 +60,9 @@ namespace RainDodger
 
                 if (newPOS > screenHeight)
                 {
-                    int[] RaindropXpos = GenerateRaindropPOS(1, 10, screenWidth);
+                    int[] RaindropXpos = GenerateRaindropPOS(1, 0, screenWidth);
                     newPOS = RaindropXpos[0];
-                    graphRaindrops[i, 1] = 0;
+                    newPOS = 0;
                 }
 
                 graphRaindrops[i, 1] = newPOS;
