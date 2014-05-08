@@ -88,7 +88,7 @@
             this.Controls.Add(this.lblLives);
             this.Name = "GameScreen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Rain Dodger";
+            this.Text = "The Dodger Game";
             this.Load += new System.EventHandler(this.GameScreen_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GameScreen_KeyDown);
             this.ResumeLayout(false);

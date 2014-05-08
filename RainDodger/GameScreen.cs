@@ -162,12 +162,16 @@ namespace RainDodger
             {
                 int currRaindropXPos = raindrops[i, 0];                                                     // Loading each raindrops X (horizontal) position in a integer variable, one at a time
                 int currRaindropYPos = raindrops[i, 1];                                                     // Loading each raindrops Y (vertical) position in a integer variable, one at a time
+                int currRaindropType = raindrops[i, 2];                                                     // Loading each raindrops type in a integer variable, one at a time
 
                 if (currRaindropXPos >= POSx && currRaindropXPos <= (POSx + PlayerWidth))                   // Check the condition of the X (horizontal) position of the raindrops, to see if it's inline with the player area
                     if (currRaindropYPos >= POSy && currRaindropYPos <= (POSy + PlayerHeight))              // Check the condition of the Y (vertical) position of the raindrops, to see if it's inline with the player area
                     {
-                        GameOver();                                                                         // If both the X and y position of any raindrop is inline with the player area the GameOver method is called
-                        break;                                                                              // If the first raindrop inside the player area is found the loop through the raindrops is broken because the player is already dead
+                        if (currRaindropType == 0)                                                          // Check the condition of the raindrop type, 0 = decrement live and game ends
+                        {
+                            GameOver();                                                                     // If both the X and y position of any raindrop is inline with the player area the GameOver method is called
+                            break;                                                                          // If the first raindrop inside the player area is found the loop through the raindrops is broken because the player is already dead
+                        }
                     }
             }
         }
@@ -201,15 +205,10 @@ namespace RainDodger
         /*GameScreen_KeyDown method/event - Executes every time a button is pressed down*/
         private void GameScreen_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyValue.ToString() == "39" || e.KeyValue.ToString() == "102")                            // Check if the key pressed down is the RIGHT arrow
-            {
-                POSx = POSx + 3;                                                                            // If the RIGHT arrow was pressed the X (horizontal) position will be incremented - Player moves to the right
-            }
+            GameController gameController = new GameController();                                           // Creating a new object of the GameController class
+            int moveDirection = gameController.PlayerMovementDirection(e.KeyValue.ToString());              // Calls the method exposed by using the created class object to get the movement direction returned
 
-            if (e.KeyValue.ToString() == "37" || e.KeyValue.ToString() == "100")                            // Check if the key pressed down is the LEFT arrow
-            {
-                POSx = POSx - 3;                                                                            // If the LEFT arrow was pressed the X (horizontal) position will be decremented - Player moves to the left
-            }
+            POSx = POSx + moveDirection;                                                                    // If the RIGHT arrow was pressed the X (horizontal) position will be incremented - Player moves to the right
         }
 
         /*btnRestart_Click method/event - Event when the "restart" button was pressed ("New  Game" and "Restart" functionality*/
@@ -221,7 +220,7 @@ namespace RainDodger
 
             if (btnRestart.Text == "Retry") 
             {
-                raindrops = new int[raindropCount, 2];                                                      // Creating a new object of the raindrops two dimensional array, this will clear the arrays values
+                raindrops = new int[raindropCount, 3];                                                      // Creating a new object of the raindrops two dimensional array, this will clear the arrays values
                 runOnceRaindrops = true;                                                                    // Reset the boolean runOnceRaindrops variables value so that the raindrops initial position gets loaded
             }
 

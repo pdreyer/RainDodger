@@ -16,7 +16,7 @@ namespace RainDodger
         public int[,] RaindropManager(int screenWidth, Graphics graphRaindrop)
         {
             int raindropCount = int.Parse(ConfigurationSettings.AppSettings["RaindropCount"].ToString());           // Loading the config value for the amount of raindrops to be created
-            RaindropArr = new int[raindropCount, 2];                                                                // Two dimensional array that will hold the raindrops being created
+            RaindropArr = new int[raindropCount, 3];                                                                // Two dimensional array that will hold the raindrops being created
 
             int[] RaindropXpos = GenerateRaindropPOS(raindropCount, 10, screenWidth);                               // Calling the GenerateRaindropsPOS method to get the raindrops X (horizontal) positions
             int[] RaindropYpos = GenerateRaindropPOS(raindropCount, -500, 0);                                       // Calling the GenerateRaindropsPOS method to get the raindrops Y (vertical) positions
@@ -25,6 +25,7 @@ namespace RainDodger
             {
                 RaindropArr[i, 0] = RaindropXpos[i];                                                                // Loading the X (horizontal) positions into the two dimensional array position 0
                 RaindropArr[i, 1] = RaindropYpos[i];                                                                // Loading the Y (vertical) positions into the two dimensional array position 1
+                RaindropArr[i, 2] = 0;                                                                              // Loading the value determining if the item should decrease (0) or increase (1) player lives on collision
             }
 
             return RaindropArr;                                                                                     // returning the fully populated two dimensional array
@@ -69,6 +70,7 @@ namespace RainDodger
 
                 graphRaindrops[i, 0] = newXPOS;                                                                     // Populating the new X (horizontal) position in the two dimensional array
                 graphRaindrops[i, 1] = newYPOS;                                                                     // Populating the new Y (vertical) position in the two dimensional array
+                graphRaindrops[i, 2] = graphRaindrops[i, 2];                                                        // Populating the value from original array determining the type of collision
             }
 
             return graphRaindrops;                                                                                  // returning the newly populated two dimensional array
